@@ -1,3 +1,24 @@
-i am going to make this a key script oa i am 
-adding loader and remote so stealer dont edit my script 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/abuzhussain-dev/Main-Script/refs/heads/main/Script%20loader"))()
+--[[ 
+    Loader Script by Zeeshan
+    Purpose: Loads my main script safely from GitHub.
+    Note: This script does NOT collect any user data.
+]]
+
+-- GitHub raw link to main script
+local url = "https://raw.githubusercontent.com/abuzhussain-dev/Main-Script/refs/heads/main/Script loader"
+
+-- Safe load
+local success, response = pcall(function()
+    return game:HttpGet(url)
+end)
+
+if success then
+    local func, err = loadstring(response)
+    if func then
+        func()
+    else
+        warn("Error in loaded script:", err)
+    end
+else
+    warn("Failed to fetch main script from GitHub:", response)
+end
